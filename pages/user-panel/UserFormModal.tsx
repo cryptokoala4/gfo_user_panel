@@ -1,4 +1,11 @@
-import React, { FC, useState, ChangeEvent, FormEvent, MouseEventHandler } from "react";
+import React, {
+  FC,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  MouseEventHandler,
+  ChangeEventHandler,
+} from "react";
 import { User } from ".";
 import Button from "../../components/Button";
 import { userFormFields } from "./constant";
@@ -21,7 +28,9 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
   });
   const { openModal, toggleModel, onCreateUserDrill } = props;
 
-  const handleUserFormChange = (el: ChangeEvent<HTMLInputElement>) =>
+  const handleUserFormChange = (
+    el: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+  ) =>
     setUserFormInputs((prevState) => ({
       ...prevState,
       [el.target.name]: el.target.value,
@@ -60,6 +69,35 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
                             ></input>
                           );
                         })}
+                    </div>
+
+                    <div className="py-2">
+                      <select
+                        onChange={handleUserFormChange}
+                        required
+                        name="status"
+                        className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="">Select Activation Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Deactivated">Deactivated</option>
+                      </select>
+                    </div>
+
+                    <div className="py-2">
+                      <select
+                        onChange={handleUserFormChange}
+                        required
+                        name="role"
+                        className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="">Select a User Role</option>
+                        <option value="Customer Service">
+                          Customer Service
+                        </option>
+                        <option value="Risk">Risk</option>
+                        <option value="Compliance">Compliance</option>
+                      </select>
                     </div>
 
                     <div className="flex justify-end">

@@ -35,12 +35,16 @@ const UserPanel: FC<{}> = () => {
       const salt = bcrypt.genSaltSync(10);
       return bcrypt.hashSync(password, salt);
     }
-
+    
     const hashedPassword = saltPassword(userFormInputs.password);
+    
+    // @ts-ignore
+    let setStatusToBoolean = (userFormInputs.status === 'Active');
 
     const userFormInputsWithHashedPw = {
       ...userFormInputs,
       password: hashedPassword,
+      status: setStatusToBoolean,
     };
 
     if (validateEmail(userFormInputsWithHashedPw.email)) {

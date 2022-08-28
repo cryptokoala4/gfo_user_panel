@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User } from "../user-panel";
+import { roles_types } from "./users_types";
 
 const mockUserId1 = uuidv4();
 const mockUserId2 = uuidv4();
@@ -12,7 +13,7 @@ let users = {
     lastName: "Griffin",
     email: "peter.griffin@gmail.com",
     password: "stewie1234",
-    role: "CS",
+    role: roles_types.customer_service_role,
     status: true,
   },
   [mockUserId2]: {
@@ -21,7 +22,7 @@ let users = {
     lastName: "Mulan",
     email: "fa.mulan@gmail.com",
     password: "mickymouse1234",
-    role: "Risk",
+    role: roles_types.risk_role,
     status: false,
   },
 };
@@ -43,8 +44,7 @@ export const createUser = (data: User) =>
       !data.lastName ||
       !data.email ||
       !data.password ||
-      !data.role ||
-      !data.status
+      !data.role      
     ) {
       reject(new Error("Not all information provided"));
     }

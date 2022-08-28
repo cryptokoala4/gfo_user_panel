@@ -1,39 +1,39 @@
 export const userTableHeader = [
   {
     key: "id",
-    title: "ID"
+    title: "ID",
   },
   {
     key: "firstName",
-    title: "First Name"
+    title: "First Name",
   },
   {
     key: "lastName",
-    title: "Last Name"
+    title: "Last Name",
   },
   {
     key: "emaiil",
-    title: "Email"
+    title: "Email",
   },
   {
     key: "password",
-    title: "Password"
+    title: "Password",
   },
   {
     key: "role",
-    title: "Role"
+    title: "Role",
   },
   {
     key: "status",
-    title: "Status"
+    title: "Status",
   },
   {
     key: "edit",
-    title: "Edit"
+    title: "Edit",
   },
   {
     key: "delete",
-    title: "Delete"
+    title: "Delete",
   },
 ];
 
@@ -55,12 +55,12 @@ export const userFormFields = [
     key: "password",
     type: "password",
   },
-  {
-    title: "Role",
-    key: "role",
-  },
-  {
-    title: "Status",
-    key: "status",
-  },
+  // {
+  //   title: "Role",
+  //   key: "role",
+  // },
+  // {
+  //   title: "Status",
+  //   key: "status",
+  // },
 ];
