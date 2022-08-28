@@ -13,7 +13,7 @@ let users = {
     email: "peter.griffin@gmail.com",
     password: "stewie1234",
     role: "CS",
-    status: "Active",
+    status: true,
   },
   [mockUserId2]: {
     id: mockUserId2,
@@ -22,7 +22,7 @@ let users = {
     email: "fa.mulan@gmail.com",
     password: "mickymouse1234",
     role: "Risk",
-    status: "Deactivated",
+    status: false,
   },
 };
 
@@ -55,6 +55,17 @@ export const createUser = (data: User) =>
     users = { ...users, [id]: newUser };
 
     setTimeout(() => resolve(true), 250);
+  });
+
+export const updateUser = (id: string, data: User) =>
+  new Promise((resolve, reject) => {
+    if (!users[id]) {
+      return setTimeout(() => reject(new Error("User not found")), 250);
+    }
+
+    users[id] = { ...users[id], ...data };
+
+    return setTimeout(() => resolve(true), 250);
   });
 
 export const deleteUser = (id: string) =>

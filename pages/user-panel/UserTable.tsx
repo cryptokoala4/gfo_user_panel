@@ -6,10 +6,11 @@ import { userTableHeader } from "./constant";
 interface UserTableProps {
   users: User[];
   onRemoveUser: (arg: string) => void;
+  onUpdateUser: (arg: string) => void;
 }
 
 const UserTable: FC<UserTableProps> = (props) => {
-  const { users, onRemoveUser } = props;
+  const { users, onRemoveUser, onUpdateUser } = props;
 
   return (
     <>
@@ -64,13 +65,13 @@ const UserTable: FC<UserTableProps> = (props) => {
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap">
                         {role}
                       </td>
-                      {status === "Active" ? (
+                      {status ? (
                         <td className="px-4 py-4 text-sm whitespace-nowrap text-green-700 font-medium">
-                          {status}
+                          Activated
                         </td>
                       ) : (
                         <td className="px-4 py-4 text-sm whitespace-nowrap text-red-700 font-medium">
-                          {status}
+                          Deactivated
                         </td>
                       )}
                       <td>
@@ -78,6 +79,7 @@ const UserTable: FC<UserTableProps> = (props) => {
                           className={
                             "bg-blue-500 hover:bg-blue-600 focus:ring-blue-700"
                           }
+                          onClick={() => onUpdateUser(id)}
                         >
                           Edit
                         </Button>

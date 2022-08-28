@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect, FC } from "react";
-import { deleteUser, getUsers } from "../api/users";
+import React, { useState, useCallback, useEffect, FC, useMemo } from "react";
+import { createUser, deleteUser, getUsers, updateUser } from "../api/users";
 import CreateUser from "./CreateUser";
 import UserTable from "./UserTable";
 
@@ -9,7 +9,7 @@ export interface User {
   lastName: string;
   email: string;
   role: string;
-  status: string;
+  status: boolean;
   password: string;
 }
 
@@ -25,9 +25,32 @@ const UserPanel: FC<{}> = () => {
     }
   }, []);
 
+  const onCreateUser = async (userFormInputs: User) => {
+    console.log('@@@', userFormInputs)
+    try {
+      await createUser(userFormInputs);
+      await fetchUsers();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const onUpdateUser = async (id: string) => {
+    const user = users.find((user) => user.id === id);
+    const status = !user?.status
+    
+    try {
+      await updateUser(id, { ...user!, status });
+      await fetchUsers();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const onRemoveUser = async (id: string) => {
     try {
       await deleteUser(id);
+      await fetchUsers();
     } catch (err) {
       console.error(err);
     }
@@ -35,12 +58,16 @@ const UserPanel: FC<{}> = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [fetchUsers, users]);
+  }, [fetchUsers]);
 
   return (
     <>
-      <UserTable users={users} onRemoveUser={onRemoveUser}/>
-      <CreateUser users={users} />
+      <UserTable
+        users={users}
+        onUpdateUser={onUpdateUser}
+        onRemoveUser={onRemoveUser}
+      />
+      <CreateUser onCreateUser={onCreateUser} />
     </>
   );
 };

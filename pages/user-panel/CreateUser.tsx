@@ -1,30 +1,18 @@
 import React, { useState, FC } from "react";
 import { User } from ".";
 import Button from "../../components/button";
-import { createUser } from "../api/users";
 import CreateUserModal from "./CreateUserModal";
 
 interface CreateUserProps {
-  users: User[];
+  onCreateUser: (arg: User) => void;
 }
 
 const UserTablePage: FC<CreateUserProps> = (props) => {
   const [openModal, setOpenModal] = useState(false);
-  const { users } = props;
+  const { onCreateUser } = props;
 
   const toggleModel = () => setOpenModal((prevState) => !prevState);
-
-  const onCreateUser = async (userFormInputs: User) => {
-    try {
-      await createUser(userFormInputs);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  if (!users) {
-    return null;
-  }
+  const onCreateUserDrill = (user: User) => onCreateUser(user)
 
   return (
     <>
@@ -39,7 +27,7 @@ const UserTablePage: FC<CreateUserProps> = (props) => {
       <CreateUserModal
         openModal={openModal}
         toggleModel={toggleModel}
-        onCreateUser={onCreateUser}
+        onCreateUserDrill={onCreateUserDrill}
       />
     </>
   );

@@ -7,7 +7,7 @@ import { userFormFields } from "./constant";
 interface UserModalProps {
   openModal: boolean;
   toggleModel: MouseEventHandler<HTMLButtonElement>;
-  onCreateUser: (arg: User) => void;
+  onCreateUserDrill: (arg: User) => void;
 }
 
 const CreateUserModal: FC<UserModalProps> = (props) => {
@@ -17,10 +17,10 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
     lastName: "",
     email: "",
     role: "",
-    status: "",
+    status: false,
     password: "",
   });
-  const { openModal, toggleModel, onCreateUser } = props;
+  const { openModal, toggleModel, onCreateUserDrill } = props;
 
   const handleUserFormChange = (el: ChangeEvent<HTMLInputElement>) =>
     setUserFormInputs((prevState) => ({
@@ -30,7 +30,7 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
 
   const handleCreateUser = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    onCreateUser(userFormInputs);
+    onCreateUserDrill(userFormInputs);
   };
 
   return (
