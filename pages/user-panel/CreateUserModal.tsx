@@ -66,7 +66,7 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
                     <div className="flex justify-end">
                       <Button
                         className={
-                          "bg-red-600 hover:bg-red-700 focus:ring-red-800"
+                          "bg-red-600 hover:bg-red-700 focus:ring-red-800 mr-2"
                         }
                         onClick={toggleModel}
                         type="button"

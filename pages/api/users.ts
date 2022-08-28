@@ -56,3 +56,16 @@ export const createUser = (data: User) =>
 
     setTimeout(() => resolve(true), 250);
   });
+
+export const deleteUser = (id: string) =>
+  new Promise((resolve, reject) => {
+    const { [id]: user, ...rest } = users;
+
+    if (!user) {
+      return setTimeout(() => reject(new Error("User not found")), 250);
+    }
+
+    users = { ...rest };
+
+    return setTimeout(() => resolve(true), 250);
+  });

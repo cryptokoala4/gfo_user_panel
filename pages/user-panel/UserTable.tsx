@@ -5,10 +5,11 @@ import { userTableHeader } from "./constant";
 
 interface UserTableProps {
   users: User[];
+  onRemoveUser: (arg: string) => void;
 }
 
 const UserTable: FC<UserTableProps> = (props) => {
-  const { users } = props;
+  const { users, onRemoveUser } = props;
 
   return (
     <>
@@ -86,6 +87,7 @@ const UserTable: FC<UserTableProps> = (props) => {
                           className={
                             "bg-red-500 hover:bg-red-600 focus:ring-red-700"
                           }
+                          onClick={() => onRemoveUser(id)}
                         >
                           Delete
                         </Button>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, FC } from "react";
-import { getUsers } from "../api/users";
+import { deleteUser, getUsers } from "../api/users";
 import CreateUser from "./CreateUser";
 import UserTable from "./UserTable";
 
@@ -25,13 +25,21 @@ const UserPanel: FC<{}> = () => {
     }
   }, []);
 
+  const onRemoveUser = async (id: string) => {
+    try {
+      await deleteUser(id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers, users]);
 
   return (
     <>
-      <UserTable users={users} />
+      <UserTable users={users} onRemoveUser={onRemoveUser}/>
       <CreateUser users={users} />
     </>
   );
