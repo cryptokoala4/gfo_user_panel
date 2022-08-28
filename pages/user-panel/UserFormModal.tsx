@@ -4,7 +4,6 @@ import React, {
   ChangeEvent,
   FormEvent,
   MouseEventHandler,
-  ChangeEventHandler,
 } from "react";
 import { User } from ".";
 import Button from "../../components/Button";
@@ -16,7 +15,7 @@ interface UserModalProps {
   onCreateUserDrill: (arg: User) => void;
 }
 
-const CreateUserModal: FC<UserModalProps> = (props) => {
+const CreateUserModal: FC<UserModalProps> = (props) => {  
   const [userFormInputs, setUserFormInputs] = useState<User>({
     id: "",
     firstName: "",
