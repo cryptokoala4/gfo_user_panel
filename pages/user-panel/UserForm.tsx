@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 import { User } from ".";
-import Button from "../../components/button";
-import CreateUserModal from "./CreateUserModal";
+import Button from "../../components/Button";
+import CreateUserModal from "./UserFormModal";
 
 interface CreateUserProps {
   onCreateUser: (arg: User) => void;

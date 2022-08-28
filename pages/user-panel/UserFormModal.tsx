@@ -1,7 +1,6 @@
-import React, { ChangeEvent, FormEvent, MouseEventHandler } from "react";
-import { FC, useState } from "react";
+import React, { FC, useState, ChangeEvent, FormEvent, MouseEventHandler } from "react";
 import { User } from ".";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import { userFormFields } from "./constant";
 
 interface UserModalProps {

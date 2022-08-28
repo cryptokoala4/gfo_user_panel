@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, FC, useMemo } from "react";
 import { createUser, deleteUser, getUsers, updateUser } from "../api/users";
-import CreateUser from "./CreateUser";
+import CreateUser from "./UserForm";
 import UserTable from "./UserTable";
 
 export interface User {

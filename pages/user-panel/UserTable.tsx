@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { User } from ".";
-import Button from "../../components/button";
+import Button from "../../components/Button";
+import EyeIconSvg from "../../components/EyeIconSvg";
 import { userTableHeader } from "./constant";
 
 interface UserTableProps {
@@ -10,6 +11,7 @@ interface UserTableProps {
 }
 
 const UserTable: FC<UserTableProps> = (props) => {
+  const [showUserPassword, setShowUserPassword] = useState(false);
   const { users, onRemoveUser, onUpdateUser } = props;
 
   return (
@@ -60,8 +62,16 @@ const UserTable: FC<UserTableProps> = (props) => {
                         {email}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap flex items-center">
-                        {password}
-                      </td>
+                      <div
+                        className="pr-1 h-5"
+                        onClick={() => {
+                          setShowUserPassword(!showUserPassword);
+                        }}
+                      >
+                        <EyeIconSvg />
+                      </div>
+                      <div className="text-ellipsis overflow-hidden w-[140px]">{showUserPassword ? password : "*******"}</div>
+                    </td>
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap">
                         {role}
                       </td>
