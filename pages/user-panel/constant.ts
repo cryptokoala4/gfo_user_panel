@@ -36,3 +36,31 @@ export const userTableHeader = [
     title: "Delete"
   },
 ];
+
+export const userFormFields = [
+  {
+    title: "First Name",
+    key: "firstName",
+  },
+  {
+    title: "Last Name",
+    key: "lastName",
+  },
+  {
+    title: "Email",
+    key: "email",
+  },
+  {
+    title: "Password",
+    key: "password",
+    type: "password",
+  },
+  {
+    title: "Role",
+    key: "role",
+  },
+  {
+    title: "Status",
+    key: "status",
+  },
+];

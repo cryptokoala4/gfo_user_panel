@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect, FC } from "react";
 import { getUsers } from "../api/users";
+import CreateUser from "./CreateUser";
 import UserTable from "./UserTable";
 
 export interface User {
@@ -26,11 +27,12 @@ const UserPanel: FC<{}> = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [fetchUsers]);
+  }, [fetchUsers, users]);
 
   return (
     <>
       <UserTable users={users} />
+      <CreateUser users={users} />
     </>
   );
 };

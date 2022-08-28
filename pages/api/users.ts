@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { User } from "../user-panel";
 
 const mockUserId1 = uuidv4();
 const mockUserId2 = uuidv4();
@@ -33,4 +34,25 @@ export const getUsers = () =>
     }
 
     setTimeout(() => resolve(Object.values(users)), 250);
+  });
+
+export const createUser = (data: User) =>
+  new Promise((resolve, reject) => {
+    if (
+      !data.firstName ||
+      !data.lastName ||
+      !data.email ||
+      !data.password ||
+      !data.role ||
+      !data.status
+    ) {
+      reject(new Error("Not all information provided"));
+    }
+
+    const id = uuidv4();
+    const newUser = { ...data, id };
+
+    users = { ...users, [id]: newUser };
+
+    setTimeout(() => resolve(true), 250);
   });
