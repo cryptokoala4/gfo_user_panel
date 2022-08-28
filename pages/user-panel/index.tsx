@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, FC, useMemo } from "react";
 import { createUser, deleteUser, getUsers, updateUser } from "../api/users";
 import CreateUser from "./UserForm";
 import UserTable from "./UserTable";
+import bcrypt from "bcryptjs";
 
 export interface User {
   id: string;
@@ -26,19 +27,36 @@ const UserPanel: FC<{}> = () => {
   }, []);
 
   const onCreateUser = async (userFormInputs: User) => {
-    console.log('@@@', userFormInputs)
-    try {
-      await createUser(userFormInputs);
-      await fetchUsers();
-    } catch (err) {
-      console.error(err);
+    function validateEmail(email: string) {
+      return /\S+@\S+\.\S+/.test(email);
+    }
+
+    function saltPassword(password: string) {
+      const salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(password, salt);
+    }
+
+    const hashedPassword = saltPassword(userFormInputs.password);
+
+    const userFormInputsWithHashedPw = {
+      ...userFormInputs,
+      password: hashedPassword,
+    };
+
+    if (validateEmail(userFormInputsWithHashedPw.email)) {
+      try {
+        await createUser(userFormInputsWithHashedPw);
+        await fetchUsers();
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
   const onUpdateUser = async (id: string) => {
     const user = users.find((user) => user.id === id);
-    const status = !user?.status
-    
+    const status = !user?.status;
+
     try {
       await updateUser(id, { ...user!, status });
       await fetchUsers();
