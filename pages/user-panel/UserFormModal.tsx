@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { User } from ".";
 import Button from "../../components/Button";
-import { userFormFields } from "./constant";
+import { userFormFields } from "../../helper/constant";
 
 interface UserModalProps {
   openModal: boolean;

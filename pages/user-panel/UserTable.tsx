@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { User } from ".";
 import Button from "../../components/Button";
 import EyeIconSvg from "../../components/EyeIconSvg";
-import { userTableHeader } from "./constant";
+import { userTableHeader } from "../../helper/constant";
 
 interface UserTableProps {
   users: User[];
