@@ -6,7 +6,7 @@ Mock data is stored with React's useState hook in the component's state
 
 The app can be visited at https://crypto-koala.com/
 
-## Getting Started
+## Running it locally
 
 First, install the dependencies:
 ```bash
