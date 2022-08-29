@@ -75,9 +75,9 @@ const UserTable: FC<UserTableProps> = (props) => {
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap">
                         {role}
                       </td>
-                      {status ? (
+                      {status === "Active" ? (
                         <td className="px-4 py-4 text-sm whitespace-nowrap text-green-700 font-medium">
-                          Activated
+                          Active
                         </td>
                       ) : (
                         <td className="px-4 py-4 text-sm whitespace-nowrap text-red-700 font-medium">

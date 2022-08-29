@@ -22,7 +22,7 @@ const CreateUserModal: FC<UserModalProps> = (props) => {
     lastName: "",
     email: "",
     role: "",
-    status: false,
+    status: "",
     password: "",
   });
   const { openModal, toggleModel, onCreateUserDrill } = props;

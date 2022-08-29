@@ -11,7 +11,7 @@ export interface User {
   lastName: string;
   email: string;
   role: string;
-  status: boolean;
+  status: string;
   password: string;
 }
 
@@ -40,14 +40,10 @@ const UserPanel: FC<{}> = () => {
     }
 
     const hashedPassword = saltPassword(userFormInputs.password);
-
-    // @ts-ignore
-    let setStatusToBoolean = userFormInputs.status === "Active";
-
+    
     const userFormInputsWithHashedPw = {
       ...userFormInputs,
       password: hashedPassword,
-      status: setStatusToBoolean,
     };
 
     if (validateEmail(userFormInputsWithHashedPw.email)) {
@@ -71,7 +67,8 @@ const UserPanel: FC<{}> = () => {
 
   const onUpdateUser = async (id: string) => {
     const user = users.find((user) => user.id === id);
-    const status = !user?.status;
+    const status = user?.status === "Deactivated" ? 'Active' : 'Deactivated';
+    console.log('status', status)
 
     try {
       await updateUser(id, { ...user!, status });

@@ -14,7 +14,7 @@ let users = {
     email: "peter.griffin@gmail.com",
     password: "stewie1234",
     role: roleTypes.compliance_role,
-    status: true,
+    status: "Active",
   },
   [mockUserId2]: {
     id: mockUserId2,
@@ -23,7 +23,7 @@ let users = {
     email: "fa.mulan@gmail.com",
     password: "mickymouse1234",
     role: roleTypes.risk_role,
-    status: false,
+    status: "Deactivated",
   },
 };
 
